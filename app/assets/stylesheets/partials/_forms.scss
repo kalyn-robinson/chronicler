@@ -1,0 +1,14 @@
+.has-feedback {
+  .form-control-feedback.fa {
+    top: 14px;
+    color: $input-border;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  & + .form-control-feedback.fa {
+    top: 0px;
+    color: $state-danger-border;
+  }
+}
