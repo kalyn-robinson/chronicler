@@ -2,31 +2,27 @@ require 'test_helper'
 
 class PagesControllerTest < ActionDispatch::IntegrationTest
 
-  def setup
-    @base_title = 'Chronicler'
-  end
-
   test "should get root" do
-    get root_url
+    get root_path
     assert_response :success
-    assert_select 'title', @base_title
+    assert_select 'title', full_title
   end
 
   test 'should get home' do
-    get pages_home_url
+    get root_path
     assert_response :success
-    assert_select 'title', @base_title
+    assert_select 'title', full_title
   end
 
   test 'should get help' do
-    get pages_help_url
+    get help_path
     assert_response :success
-    assert_select 'title', "#{@base_title} | Help"
+    assert_select 'title', full_title('Help')
   end
 
   test 'should get contact' do
-    get pages_contact_url
+    get contact_path
     assert_response :success
-    assert_select 'title', "#{@base_title} | Contact Us"
+    assert_select 'title', full_title('Contact Us')
   end
 end
