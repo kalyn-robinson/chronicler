@@ -18,6 +18,13 @@
             <span class="fa fa-lock form-control-feedback" aria-hidden="true"></span>
           </div>
 
+          <div class="checkbox">
+            <%= f.label :remember_me do %>
+              <%= f.check_box :remember_me %>
+              Remember me on this computer
+            <% end %>
+          </div>
+
           <%= f.submit "Log In", class: "btn btn-primary btn-block" %>
         <% end %>
       </div>
