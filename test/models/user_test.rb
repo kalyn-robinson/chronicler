@@ -42,6 +42,14 @@ class UserTest < ActiveSupport::TestCase
     assert_not duplicate_user.valid?
   end
 
+  test 'name uniqueness should ignore soft deleted records' do
+    duplicate_user = @user.dup
+    duplicate_user.email = duplicate_user.email.upcase
+    @user.save
+    @user.destroy
+    assert duplicate_user.valid?
+  end
+
   test 'email validation should accept valid addresses' do
     valid_addresses = %w[a@b.c user@EXAMPLE.com user@example.CoM 
                          us-ER@exam.ple.com us.er@exam.ple us+er@ex.ample]

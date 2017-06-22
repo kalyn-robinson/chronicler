@@ -9,6 +9,8 @@ end
 gem 'rails', '~> 5.1.1'
 gem 'bootstrap-sass', '3.3.7'
 gem 'bootswatch-rails'
+gem 'will_paginate',           '3.1.5'
+gem 'bootstrap-will_paginate', '1.0.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -25,6 +27,8 @@ gem 'jquery-rails'
 # NOTE: this is a kludgy fix for a bug on Windows. Use the above if you're using a reasonable
 # dev environment.
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
+# Use Paranoia to soft delete records
+gem "paranoia", "~> 2.2"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

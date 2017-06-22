@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  acts_as_paranoid
+
   attr_accessor :remember_token
   
   EMAIL_FORMAT = /.+@.+\..+/
@@ -10,7 +12,8 @@ class User < ApplicationRecord
                     length: { minimum: 5, maximum: 255 },
                     format: EMAIL_FORMAT
   validates :password, presence: true, 
-                       length: { minimum: 6 }
+                       length: { minimum: 6 },
+                       allow_nil: true
   validates :password, confirmation: true, on: :create
   validates :password_confirmation, presence: true, on: :create
 
