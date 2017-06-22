@@ -64,4 +64,26 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_url
   end
+
+  test 'duplicate recovered username should be reset' do
+    log_in_as(@yakisoba)
+
+    assert_difference 'User.count', -1 do
+      delete user_path(@hibachi)
+    end
+
+    assert_redirected_to users_url
+
+    assert_difference 'User.count', 1 do
+      post signup_path, params: {
+                          user: { name: @hibachi.name,
+                                  email: @hibachi.email,
+                                  password: 'password',
+                                  password_confirmation: 'password' } }
+    end
+
+    post restore_user_path(@hibachi)
+    assert_redirected_to users_url
+    assert_not_equal @hibachi.reload.name, 'Hibachi'
+  end
 end

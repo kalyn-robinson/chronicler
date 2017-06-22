@@ -26,7 +26,8 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     first_page_of_users.each do |user|
       assert_select 'a[href=?]', user_path(user), text: user.name
       unless user == @yakisoba
-        assert_select 'a[href=?]', user_path(user), text: 'delete'
+        assert_select 'a[href=?]', user_path(user), text: 'Delete' if !user.deleted_at?
+        assert_select 'a[href=?]', user_path(user), text: 'Restore' if user.deleted_at?
       end
     end
     assert_difference 'User.count', -1 do
