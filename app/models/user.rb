@@ -7,7 +7,10 @@ class User < ApplicationRecord
   validates :email, presence: true, 
                     length: { minimum: 5, maximum: 255 },
                     format: EMAIL_FORMAT
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, 
+                       length: { minimum: 6 }
+  validates :password, confirmation: true, on: :create
+  validates :password_confirmation, presence: true, on: :create
 
   has_secure_password
 end
