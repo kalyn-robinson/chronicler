@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :recover]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :restore]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: [:destroy, :recover]
+  before_action :admin_user,     only: [:destroy, :restore]
 
   def show
     @user = User.find(params[:id])
@@ -54,6 +54,8 @@ class UsersController < ApplicationController
     @user = User.with_deleted.find(params[:id])
     name_taken = User.where('lower(name) = ?', @user.name.downcase).any?
 
+    puts "*" * 50
+
     unless name_taken
       @user.restore
       flash[:success] = 'User successfully restored'
@@ -63,6 +65,8 @@ class UsersController < ApplicationController
       @user.restore
       flash[:success] = 'User successfully restored. Username has been reset.'
     end
+
+    puts "*" * 50
     
     redirect_to users_url
   end
@@ -86,7 +90,10 @@ class UsersController < ApplicationController
     # Confirms the correct user.
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      unless current_user?(@user) || current_user.admin?
+        flash[:danger] = 'You cannot perform this action'
+        redirect_to(root_url)
+      end
     end
     
     # Confirms an admin user.
