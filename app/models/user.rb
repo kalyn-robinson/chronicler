@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   acts_as_paranoid
+  has_many :characters
 
   attr_accessor :remember_token, :reset_token
   

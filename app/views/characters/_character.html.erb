@@ -1,0 +1,11 @@
+<%= content_tag :li, class: 'TEST' do %>
+  <%= link_to character.name, character %>
+  <% if is_admin? %>
+    <% if character.deleted_at? %>
+      <%= link_to "Restore", restore_character_path(character), method: :post %>
+    <% else %>
+      <%= link_to "Delete", character, method: :delete,
+                                       data: { confirm: "Are you sure?" } %>
+    <% end %>
+  <% end %>
+<% end %>

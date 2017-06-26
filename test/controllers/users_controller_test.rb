@@ -67,6 +67,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should redirect restore when not logged in' do
+    @yakisoba.destroy
     assert_no_difference 'User.count' do
       post restore_user_path(@yakisoba)
     end
@@ -75,6 +76,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test 'should redirect restore when logged in as a non-admin' do
     log_in_as(@hibachi)
+    @yakisoba.destroy
     assert_no_difference 'User.count' do
       post restore_user_path(@yakisoba)
     end

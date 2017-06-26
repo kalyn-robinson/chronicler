@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :characters
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -15,6 +16,9 @@ Rails.application.routes.draw do
   get    '/login',     to: 'sessions#new'
   post   '/login',     to: 'sessions#create'
   delete '/logout',    to: 'sessions#destroy'
+
+  
+  post   '/characters/:id/restore', to: 'characters#restore', as: :restore_character
 
   resources :users
   resources :password_resets,     only: [:new, :create, :edit, :update]

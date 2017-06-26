@@ -17,4 +17,8 @@ module UsersHelper
   def find_user_by_name(name)
     find_users('name', name).first
   end
+
+  def is_admin?
+    logged_in? && current_user.admin?
+  end
 end

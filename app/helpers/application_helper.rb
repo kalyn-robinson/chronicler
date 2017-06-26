@@ -19,4 +19,12 @@ module ApplicationHelper
     
     classes.join(" ")
   end
+
+  def show_deleted(model, page)
+    if logged_in? && current_user.admin?
+      model.with_deleted.paginate(page: page)
+    else
+      model.paginate(page: page)
+    end
+  end
 end

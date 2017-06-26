@@ -1,0 +1,8 @@
+<% provide(:title, "Characters") %>
+<h1>Characters</h1>
+
+<ul class="characters">
+  <%= render @characters %>
+</ul>
+
+<%= link_to 'New Character', new_character_path %>

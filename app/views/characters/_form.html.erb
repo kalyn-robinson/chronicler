@@ -1,0 +1,11 @@
+<%= form_with(model: character, local: true) do |form| %>
+  <%= render 'shared/error_messages', model: character %>
+
+  <div class="form-group has-feedback">
+    <%= form.label :name, class: 'sr-only' %>
+    <%= form.text_field :name, class: 'form-control', placeholder: 'Name' %>
+    <span class="fa fa-user-o form-control-feedback" aria-hidden="true"></span>
+  </div>
+
+  <%= form.submit text, class: "btn btn-primary btn-block" %>
+<% end %>
