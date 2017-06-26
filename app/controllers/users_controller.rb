@@ -52,9 +52,7 @@ class UsersController < ApplicationController
 
   def restore
     @user = User.with_deleted.find(params[:id])
-    name_taken = User.where('lower(name) = ?', @user.name.downcase).any?
-
-    puts "*" * 50
+    name_taken = find_user_by_name(@user.name.downcase)
 
     unless name_taken
       @user.restore
@@ -65,8 +63,6 @@ class UsersController < ApplicationController
       @user.restore
       flash[:success] = 'User successfully restored. Username has been reset.'
     end
-
-    puts "*" * 50
     
     redirect_to users_url
   end

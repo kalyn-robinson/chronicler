@@ -30,7 +30,8 @@
       </div>
 
       <div class="panel-footer">
-        New user? <%= link_to "Sign up now!", signup_path %>
+        <%= link_to "New user?", signup_path %> 
+        <%= link_to "Forgot password?", new_password_reset_path, class: "pull-right" %>
       </div>
     </div>
   </div>

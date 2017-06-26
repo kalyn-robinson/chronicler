@@ -1,0 +1,20 @@
+<% provide(:title, "Forgot Password") %>
+<h1>Forgot Password</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+          <div class="form-group has-feedback">
+            <%= f.label :name, class: 'sr-only' %>
+            <%= f.text_field :name, class: 'form-control', placeholder: 'Username' %>
+            <span class="fa fa-user-o form-control-feedback" aria-hidden="true"></span>
+          </div>
+
+          <%= f.submit "Reset Password", class: "btn btn-primary btn-block" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
