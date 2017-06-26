@@ -9,6 +9,11 @@ hibachi:
   email: hibachi@example.com
   password_digest: <%= User.digest('password') %>
 
+sushi:
+  name: Sushi
+  email: sushi@example.com
+  password_digest: <%= User.digest('password') %>
+
 <% 30.times do |n| %>
 user_<%= n %>:
   name:  <%= "User #{n}" %>
