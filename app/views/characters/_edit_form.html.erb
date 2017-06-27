@@ -1,0 +1,15 @@
+<%= form_for @character, url: edit_character_path(@character) do |form| %>
+  <%= render 'shared/error_messages', model: @character %>
+
+  <div class="form-group has-feedback">
+    <%= form.label :name, class: 'sr-only' %>
+    <%= form.text_field :name, class: 'form-control', placeholder: 'Name' %>
+    <span class="fa fa-user-o form-control-feedback" aria-hidden="true"></span>
+  </div>
+
+  <% @character.sheet.properties.each do |key, value| %>
+    <%= render 'property', key: key, value: value, form: form %>
+  <% end %>
+
+  <%= form.submit text, class: "btn btn-primary btn-block" %>
+<% end %>

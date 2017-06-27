@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  character: one
+  sheet: one
+  properties: MyText
+
+two:
+  character: two
+  sheet: two
+  properties: MyText

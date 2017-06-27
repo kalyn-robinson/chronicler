@@ -1,0 +1,13 @@
+<%= content_tag :div, class: class_string( { "field_with_errors" => @character.character_sheet
+                                                                              .errors
+                                                                              .messages
+                                                                              .include?(key) },
+                                             "form-group has-feedback" ) do %>
+  <%= form.label key, for: "character[character_sheet_attributes[properties[#{key}]]]" %>
+
+  <% if [Integer, String, Float, nil].include?(value[:type]) %>
+    <%= render 'characters/property/text', form: form, key: key %>
+  <% elsif value[:type] == Array %>
+    <%= render 'characters/property/array', form: form, key: key %>
+  <% end %>
+<% end %>

@@ -1,0 +1,5 @@
+  <%= form.text_field "character_sheet_attributes[properties[#{key}]]", 
+                      placeholder: key,
+                      value: @character.character_sheet.properties[key] %>
+
+  <span class="fa fa-file-text-o form-control-feedback" aria-hidden="true"></span>

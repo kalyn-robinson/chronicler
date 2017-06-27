@@ -1,11 +1,11 @@
-<% provide(:title, "Edit Character") %>
-<h1>Edit Character</h1>
+<% provide(:title, "Edit #{@character.name}") %>
+<h1>Edit <%= @character.name %></h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-default">
       <div class="panel-body">
-        <%= render 'form', character: @character, text: 'Update Character' %>
+        <%= render 'edit_form', character: @character, text: 'Update Character' %>
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@
   <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-default">
       <div class="panel-body">
-        <%= render 'form', url: nil, text: 'Update Profile' %>
+        <%= render 'form', url: edit_user_path(@user), text: 'Update Profile' %>
 
         <div class="gravatar_edit">
           <%= gravatar_for @user %>

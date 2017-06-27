@@ -10,14 +10,18 @@ module ApplicationHelper
     end
   end
 
-  def class_string(css_map)
-    classes = []
+  # def class_string(css_map)
+  #   classes = []
 
-    css_map.each do |css, bool|
-      classes << css if bool
-    end
+  #   css_map.each do |css, bool|
+  #     classes << css if bool
+  #   end
     
-    classes.join(" ")
+  #   classes.join(" ")
+  # end
+
+  def class_string(map, static=nil)
+    map.find_all(&:last).map(&:first).join(" ") + " #{static}"
   end
 
   def show_deleted(model, page)
@@ -26,5 +30,10 @@ module ApplicationHelper
     else
       model.paginate(page: page)
     end
+  end
+
+  
+  def is_numeric? (str)
+    Float(str) != nil rescue false
   end
 end

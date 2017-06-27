@@ -1,6 +1,6 @@
 .has-feedback {
   .form-control-feedback.fa {
-    top: 14px;
+    // top: 14px;
     color: $input-border;
   }
 }
@@ -11,4 +11,38 @@
     top: 0px;
     color: $state-danger-border;
   }
+
+  &.form-control {
+    
+  }
+}
+
+.radio-block__input {
+  display: none;
+}
+
+.radio-block__input:checked+.radio-block {
+  background: $brand-primary;
+  color: #fff;
+}
+
+.radio-block {
+  @extend .panel;
+  @extend .panel-default;
+  text-align: center;
+  width: 100%;
+
+  .radio-block__body {
+    @extend .panel-body;
+    
+    img {
+      @extend .img-responsive;
+      @extend .center-block;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+input, select, textarea {
+  @extend .form-control;
 }

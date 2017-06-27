@@ -7,8 +7,15 @@
 
 <p>
   <strong>User:</strong>
-  <%= @character.user %>
+  <%= link_to @character.user.name, user_path(@character.user) %>
 </p>
+
+<h3>Character Sheet</h3>
+<% @character.sheet.properties.keys.each do |key| %>
+  <p>
+    <strong><%= key.to_s.titleize %>:</strong> <%= @character.character_sheet.properties[key] %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_character_path(@character) %> |
 <%= link_to 'Back', characters_path %>

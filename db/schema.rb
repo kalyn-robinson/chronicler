@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626152826) do
+ActiveRecord::Schema.define(version: 20170626203808) do
+
+  create_table "character_sheets", force: :cascade do |t|
+    t.text "properties"
+    t.integer "character_id"
+    t.integer "sheet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_character_sheets_on_character_id"
+    t.index ["sheet_id"], name: "index_character_sheets_on_sheet_id"
+  end
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
@@ -20,6 +30,14 @@ ActiveRecord::Schema.define(version: 20170626152826) do
     t.datetime "updated_at", null: false
     t.index ["name", "user_id", "created_at", "updated_at", "deleted_at"], name: "index_characters"
     t.index ["user_id"], name: "index_characters_on_user_id"
+  end
+
+  create_table "sheets", force: :cascade do |t|
+    t.string "name"
+    t.text "properties"
+    t.string "avatar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -20,6 +20,19 @@ class CharactersController < ApplicationController
 
   # GET /characters/1/edit
   def edit
+    @character_sheet = @character.character_sheet
+    @sheet = @character.sheet
+
+    if @character_sheet.properties == {}
+      @character_sheet.properties = @sheet.properties.transform_values do |value|
+        puts value, value.include?(:default)
+        value.include?(:default) ? value[:default] : nil
+      end
+    end
+
+    puts '*' * 50
+    puts @character.sheet.properties
+    puts @character.character_sheet.properties
   end
 
   # POST /characters
@@ -28,7 +41,7 @@ class CharactersController < ApplicationController
 
     if @character.save
       flash[:success] = 'Character was successfully created.'
-      redirect_to @character
+      redirect_to edit_character_path @character
     else
       render 'new'
     end
@@ -71,7 +84,8 @@ class CharactersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def character_params
-      params.require(:character).permit(:name, :user_id)
+      params.require(:character).permit(:name, :user_id, 
+                                        character_sheet_attributes: [ :sheet_id, properties: {} ])
     end
 
     # Confirms the correct user.
